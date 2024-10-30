@@ -122,6 +122,9 @@ def parse_args():
   if args.build_thumbprint_file:
     config["BuildThumbprint"] = args.build_thumbprint_file.read().strip()
 
+  if config["BuildNumber"].startswith("eng."):
+    config["BuildNumber"] = config["DateUtc"]
+
   override_config(config)
   if args.partition == "system":
     config['ProductBrand'] = config['SystemBrand']
